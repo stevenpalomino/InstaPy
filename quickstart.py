@@ -17,7 +17,7 @@ friend_list = []
 
 InstaPy(username="cyclingsteven", password="Pickone1!", nogui=True)\
   .login()\
-  .like_by_tags(['cycling'], amount=1) \
+  .like_by_tags(['cycling'], amount=10) \
   .end()
 
 

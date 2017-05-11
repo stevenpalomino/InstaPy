@@ -30,6 +30,7 @@ class InstaPy:
       self.display.start()
 
     chrome_options = Options()
+    chrome_options.add_argument('headless')
     chrome_options.add_argument('--dns-prefetch-disable')
     chrome_options.add_argument('--no-sandbox')
     service_log_path = "./assets/chromedriver.log"
