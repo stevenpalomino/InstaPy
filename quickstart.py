@@ -1,7 +1,7 @@
 from instapy import InstaPy
 from selenium import webdriver
 
-driver = webdriver.Chrome()
+
 # Write your automation here
 # Stuck ? Look at the github page or the examples in the examples folder
 
