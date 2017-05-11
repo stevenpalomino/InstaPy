@@ -24,7 +24,7 @@ from .unfollow_util import dump_follow_restriction
 
 class InstaPy:
   """Class to be instantiated to use the script"""
-  def __init__(self, username=None, password=None, nogui=False):
+  def __init__(self, username=None, password=None, nogui=True):
     if nogui:
       self.display = Display(visible=0, size=(800, 600))
       self.display.start()
@@ -32,9 +32,9 @@ class InstaPy:
     chrome_options = Options()
     chrome_options.add_argument('--dns-prefetch-disable')
     chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--lang=en-US')
-    chrome_options.add_experimental_option('prefs', {'intl.accept_languages': 'en-US'})
-    self.browser = webdriver.Chrome('./assets/chromedriver', chrome_options=chrome_options)
+    service_log_path = "./assets/chromedriver.log"
+    service_args = ['--verbose']
+    self.browser = webdriver.Chrome('./assets/chromedriver', chrome_options=chrome_options, service_args=service_args, service_log_path=service_log_path)
     self.browser.implicitly_wait(25)
 
     self.logFile = open('./logs/logFile.txt', 'a')
