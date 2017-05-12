@@ -23,7 +23,7 @@ def get_links_for_tag(browser, tag, amount, media=None):
 
   browser.get('https://www.instagram.com/explore/tags/'
               + (tag[1:] if tag[:1] == '#' else tag))
-  sleep(2)
+  sleep(.5)
 
   # clicking load more
   body_elem = browser.find_element_by_tag_name('body')
@@ -88,7 +88,7 @@ def get_links_for_tag(browser, tag, amount, media=None):
 def check_link(browser, link, dont_like, ignore_if_contains, ignore_users,
                username, like_by_followers_upper_limit, like_by_followers_lower_limit):
   browser.get(link)
-  sleep(2)
+  sleep(.5)
 
   """Check if the Post is Valid/Exists"""
   post_page = browser.execute_script("return window._sharedData.entry_data.PostPage")
@@ -202,7 +202,7 @@ def like_image(browser):
   if len(like_elem) == 1:
     browser.execute_script("document.getElementsByClassName('" + like_elem[0].get_attribute("class") + "')[0].click()")
     print('--> Image Liked!')
-    sleep(2)
+    sleep(1)
     return True
   elif len(liked_elem) == 1:
     print('--> Already Liked!')

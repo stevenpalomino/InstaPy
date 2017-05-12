@@ -5,7 +5,7 @@ from time import sleep as original_sleep
 
 # Amount of variance to be introduced
 # i.e. random time will be in the range: TIME +/- STDEV %
-STDEV = 0.5
+STDEV = 0.15
 
 def randomize_time(mean):
   allowed_range = mean * STDEV
