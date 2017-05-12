@@ -11,6 +11,7 @@ from .time_util import sleep
 def get_links_for_tag(browser, tag, amount, media=None):
   """Fetches the number of links specified
   by amount and returns a list of links"""
+  print('~~~ get links')
   if media is None:
     # All known media types
     media = ['', 'Post', 'Video']
@@ -51,6 +52,13 @@ def get_links_for_tag(browser, tag, amount, media=None):
   links = [link_elem.get_attribute('href') for link_elem in link_elems
            if link_elem.text in media]
   filtered_links = len(links)
+  
+  #delete first 9 so we don't keep liking top posts when script is run on server often
+  del links[:9]
+  print('links')
+  print(links)
+  print len(links)
+
 
   while (filtered_links < amount) and not abort:
     amount_left = amount - filtered_links
@@ -82,7 +90,9 @@ def get_links_for_tag(browser, tag, amount, media=None):
     links = [link_elem.get_attribute('href') for link_elem in link_elems
              if link_elem.text in media]
     filtered_links = len(links)
-
+    print('links:')
+    print(links)
+    print('Links: '+len(links))
   return links[:amount]
 
 def check_link(browser, link, dont_like, ignore_if_contains, ignore_users,
@@ -223,6 +233,8 @@ def get_tags(browser, url):
   sleep(1)
 
   graphql = browser.execute_script("return ('graphql' in window._sharedData.entry_data.PostPage[0])")
+  print('~~~~~~ graphql:')
+  print(graphql)
   if graphql:
     image_text = browser.execute_script("return window._sharedData.entry_data.PostPage[0].graphql.shortcode_media.edge_media_to_caption.edges[0].node.text")
   else:
